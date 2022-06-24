@@ -9,7 +9,7 @@ const loadPhotos = photos => ({
 })
 
 const loadOne = photo => ({
-    type:LOAD_ONE,
+    type: LOAD_ONE,
     photo
 })
 
@@ -27,6 +27,7 @@ export const getOnePhoto = (id) => async dispatch => {
 
     if (response.ok) {
       const photo = await response.json();
+      console.log('REDUCER HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE ***************************', photo)
       dispatch(loadOne(photo));
     }
   };
@@ -43,7 +44,9 @@ const photosReducer = (state = initialState, action) => {
             return newState
 
         case LOAD_ONE:
-            newState[action.photo.id] = action.photo
+
+            newState[action.id] = action.photo
+            return newState
 
         default:
             return state

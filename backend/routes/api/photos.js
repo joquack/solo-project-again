@@ -9,7 +9,9 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-    const photo = await db.Photo.one(req.params.id)
+    const id = parseInt(req.params.id)
+    const photo = await db.Photo.findByPk(id)
+    console.log(photo)
     return res.json(photo)
 })
 

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {getAllPhotos} from '../../store/photos'
+import './index.css'
 
 function PhotosPage () {
     const dispatch = useDispatch()
@@ -23,9 +24,11 @@ function PhotosPage () {
         <>
         <h2>All Photos</h2>
         <div>
+            <ul>
             {photos.map(img => {
-                return <img src={`${img.source}`}></img>
+                return <li key={img.id}><Link to={`/phots/$o{img.id}`}><img src={`${img.source}`}></img></Link></li>
             })}
+            </ul>
         </div>
         </>
     )
