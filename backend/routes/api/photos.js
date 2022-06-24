@@ -8,4 +8,9 @@ router.get('/', async (req, res) => {
     return res.json(photos)
 })
 
+router.get('/:id', async (req, res) => {
+    const photo = await db.Photo.one(req.params.id)
+    return res.json(photo)
+})
+
 module.exports = router

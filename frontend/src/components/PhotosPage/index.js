@@ -6,8 +6,8 @@ import {getAllPhotos} from '../../store/photos'
 function PhotosPage () {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
-    const photosObj = Object.values(useSelector(state => state.photos))
-    
+    const photos = Object.values(useSelector(state => state.photos))
+
     // const [allPhotos, setAllPhotos] = useState([])
     // const photos = Object.values(photosObj)
     // useEffect(() => {
@@ -23,7 +23,7 @@ function PhotosPage () {
         <>
         <h2>All Photos</h2>
         <div>
-            {photosObj.map(img => {
+            {photos.map(img => {
                 return <img src={`${img.source}`}></img>
             })}
         </div>

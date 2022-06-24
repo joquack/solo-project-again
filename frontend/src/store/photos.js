@@ -1,10 +1,16 @@
 import { csrfFetch } from "./csrf";
 
 const LOAD_PHOTOS = 'photos/LOAD'
+const LOAD_ONE = 'photos/LOAD'
 
 const loadPhotos = photos => ({
     type: LOAD_PHOTOS,
     photos
+})
+
+const loadOne = photo => ({
+    type:LOAD_ONE,
+    photo
 })
 
 export const getAllPhotos = () => async dispatch => {
@@ -16,6 +22,15 @@ export const getAllPhotos = () => async dispatch => {
     }
 }
 
+export const getOnePhoto = (id) => async dispatch => {
+    const response = await csrfFetch(`/api/photos/${id}`);
+
+    if (response.ok) {
+      const photo = await response.json();
+      dispatch(loadOne(photo));
+    }
+  };
+
 const initialState = {}
 
 const photosReducer = (state = initialState, action) => {
@@ -26,6 +41,10 @@ const photosReducer = (state = initialState, action) => {
                 newState[photo.id] = photo
             })
             return newState
+
+        case LOAD_ONE:
+            newState[action.photo.id] = action.photo
+
         default:
             return state
     }
