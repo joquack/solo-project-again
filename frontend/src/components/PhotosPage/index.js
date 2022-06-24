@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {getAllPhotos} from '../../store/photos'
 import './index.css'
-
 function PhotosPage () {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
@@ -26,7 +25,7 @@ function PhotosPage () {
         <div>
             <ul>
             {photos.map(img => {
-                return <li key={img.id}><Link to={`/phots/$o{img.id}`}><img src={`${img.source}`}></img></Link></li>
+                return <li key={img.id}><Link to={`/photos/${img.id}`}><img src={`${img.source}`}></img></Link></li>
             })}
             </ul>
         </div>

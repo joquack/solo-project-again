@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     const id = parseInt(req.params.id)
     const photo = await db.Photo.findByPk(id)
-    console.log(photo)
+    // console.log( '\n BACKEND ROUTE', photo)
     return res.json(photo)
 })
 
