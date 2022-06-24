@@ -4,17 +4,16 @@ import { NavLink } from 'react-router-dom';
 import {getAllPhotos} from '../../store/photos'
 
 function PhotosPage () {
-    const [allPhotos, setAllPhotos] = useState([])
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
-    const photosObj = useSelector(state => state.photos)
+    const photosObj = Object.values(useSelector(state => state.photos))
+    
+    // const [allPhotos, setAllPhotos] = useState([])
     // const photos = Object.values(photosObj)
-    useEffect(() => {
-        if(photosObj)
-            setAllPhotos(Object.values(photosObj))
-    }, [photosObj])
-
-    console.log('HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE', allPhotos, 'HEREEEEE')
+    // useEffect(() => {
+    //     if(photosObj)
+    //         setAllPhotos(Object.values(photosObj))
+    // }, [photosObj])
 
     useEffect(() => {
         dispatch(getAllPhotos())
@@ -24,7 +23,7 @@ function PhotosPage () {
         <>
         <h2>All Photos</h2>
         <div>
-            {allPhotos.map(img => {
+            {photosObj.map(img => {
                 return <img src={`${img.source}`}></img>
             })}
         </div>
