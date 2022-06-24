@@ -2,9 +2,9 @@ import { csrfFetch } from "./csrf";
 
 const LOAD_PHOTOS = 'photos/LOAD'
 
-const loadPhotos = list => ({
+const loadPhotos = photos => ({
     type: LOAD_PHOTOS,
-    list
+    photos
 })
 
 export const getAllPhotos = () => async dispatch => {
@@ -26,6 +26,8 @@ const photosReducer = (state = initialState, action) => {
                 newState[photo.id] = photo
             })
             return newState
+        default:
+            return state
     }
 }
 
