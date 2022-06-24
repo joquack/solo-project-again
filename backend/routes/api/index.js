@@ -9,6 +9,7 @@ const { restoreUser } = require('../../utils/auth.js');
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
+router.use('/photos')
 
 router.post('/test', function(req, res){
     res.json({requestBody: req.body});
