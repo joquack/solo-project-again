@@ -8,7 +8,7 @@ function OnePhotoPage () {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
     const photo = Object.values(useSelector(state => state?.photos))
-    console.log('1 COMPONENT HEREEE ***************************', photo[0])
+    // console.log('1 COMPONENT HEREEE ***************************', photo[0])
 
     useEffect(() => {
         dispatch(getOnePhoto(id))
@@ -17,7 +17,7 @@ function OnePhotoPage () {
     return (
         <>
         <div>insert photo here</div>
-        <img src={`${photo[0].source}`}></img>
+        <img src={`${photo[id - 1].source}`}></img>
         </>
     )
 }
