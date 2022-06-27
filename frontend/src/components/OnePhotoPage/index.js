@@ -16,8 +16,8 @@ function OnePhotoPage () {
 
     return (
         <>
-        <div>insert photo here</div>
-        <img src={`${photo[id - 1].source}`}></img>
+            <div>insert photo here</div>
+            <img src={`${photo[id - 1].source}`}></img>
         </>
     )
 }
