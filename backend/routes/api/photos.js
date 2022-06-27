@@ -29,4 +29,12 @@ router.put('/edit/:id', async (req, res) => {
     return res.json(photo)
 })
 
+router.delete('/delete/:id', async (req, res) => {
+    const id = parseInt(req.params.id)
+
+    const photo = await db.Photo.findByPk(id)
+    await photo.destroy()
+    return res.json(photo)
+})
+
 module.exports = router

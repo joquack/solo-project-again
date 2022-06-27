@@ -4,6 +4,7 @@ const LOAD_PHOTOS = 'photos/LOAD'
 const LOAD_ONE = 'photo/LOAD'
 const CREATE_PHOTO = 'photo/CREATE'
 const UPDATE_PHOTO = 'photo/UPDATE'
+const DELETE_PHOTO = 'photo/DELETE'
 
 const load_photos = photos => ({
     type: LOAD_PHOTOS,
@@ -23,6 +24,11 @@ const create_photo = photo => ({
 const update_photo = photo => ({
     type: UPDATE_PHOTO,
     photo
+})
+
+const delete_photo = photoId => ({
+    type: DELETE_PHOTO,
+    photoId
 })
 
 export const getAllPhotos = () => async dispatch => {
@@ -67,17 +73,28 @@ export const getOnePhoto = (id) => async dispatch => {
         body: JSON.stringify(data)
     });
 
-    if (response.ok) {
+    if (response.ok){
         const photo = await response.json();
         dispatch(update_photo(photo));
         return photo;
     }
 };
 
+export const deletePhoto = photoId => async dispatch => {
+    const response = await csrfFetch(`/api/photos/delete/${photoId}`, {
+        method: 'DELETE'
+    })
+
+    if(response.ok){
+        const deletedPhoto = await response.json()
+        dispatch(delete_photo(deletedPhoto))
+    }
+}
+
 const initialState = {}
 
 const photosReducer = (state = initialState, action) => {
-    let newState = {...state}
+    const newState = {...state}
     switch (action.type) {
         case LOAD_PHOTOS:
             console.log('REDUCER',action.photos)
@@ -94,6 +111,10 @@ const photosReducer = (state = initialState, action) => {
 
         case UPDATE_PHOTO:
             return {...state, [action.photo.id]: {...action.photo}}
+
+        case DELETE_PHOTO:
+            delete newState[action.photoId]
+            return newState
 
         default:
             return state
