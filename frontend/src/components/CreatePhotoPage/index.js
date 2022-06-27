@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import {createPhoto} from '../../store/photos'
+import { useHistory } from 'react-router-dom';
 
 function CreatePhotoPage() {
+    const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
     const userId = user.id
+    const history = useHistory()
 
     const [photoName, setPhotoName] = useState("");
     const [source, setSource] = useState("");
@@ -13,14 +17,15 @@ function CreatePhotoPage() {
 
     const handleSubmit = async e => {
         e.preventDefault()
-
         const data = {userId, photoName, source}
+        dispatch(createPhoto(data))
+        history.push('/photos')
     }
 
     return (
         <>
         <h1>Create New Photo</h1>
-        <form>
+        <form onSubmit={handleSubmit}>
             <label>
                 Photo Name
                 <input
@@ -41,7 +46,7 @@ function CreatePhotoPage() {
                     required
                 />
             </label>
-            <button type="submit">Upload Song</button>
+            <button type="submit">Upload Photo</button>
         </form>
         </>
     )

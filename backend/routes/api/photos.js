@@ -15,4 +15,9 @@ router.get('/:id', async (req, res) => {
     return res.json(photo)
 })
 
+router.post('/new', async (req, res) => {
+    const photo = await db.Photo.create(req.body)
+    return res.json(photo)
+})
+
 module.exports = router
