@@ -10,6 +10,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import PhotosPage from "./components/PhotosPage";
 import OnePhotoPage from "./components/OnePhotoPage";
 import CreatePhotoPage from "./components/CreatePhotoPage";
+import EditPhotoPage from "./components/EditPhotoPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,10 @@ function App() {
 
           <Route path='/photos/:id'>
             <OnePhotoPage />
+          </Route>
+
+          <Route path='/edit/:id'>
+            <EditPhotoPage />
           </Route>
         </Switch>
       )}

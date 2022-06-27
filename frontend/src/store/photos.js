@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 const LOAD_PHOTOS = 'photos/LOAD'
 const LOAD_ONE = 'photo/LOAD'
 const CREATE_PHOTO = 'photo/CREATE'
+const UPDATE_PHOTO = 'photo/UPDATE'
 
 const load_photos = photos => ({
     type: LOAD_PHOTOS,
@@ -16,6 +17,11 @@ const load_one = photo => ({
 
 const create_photo = photo => ({
     type: CREATE_PHOTO,
+    photo
+})
+
+const update_photo = photo => ({
+    type: UPDATE_PHOTO,
     photo
 })
 
@@ -33,7 +39,7 @@ export const getOnePhoto = (id) => async dispatch => {
 
     if (response.ok) {
       const photo = await response.json();
-      console.log('THUNK HERE _____________________________________', photo)
+    //   console.log('THUNK HERE _____________________________________', photo)
       dispatch(load_one(photo));
       return photo
     }
@@ -52,6 +58,22 @@ export const getOnePhoto = (id) => async dispatch => {
     }
   }
 
+  export const updatePhoto = (data, id) => async dispatch => {
+    const response = await csrfFetch(`/api/photos/edit/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+    if (response.ok) {
+        const photo = await response.json();
+        dispatch(update_photo(photo));
+        return photo;
+    }
+};
+
 const initialState = {}
 
 const photosReducer = (state = initialState, action) => {
@@ -68,6 +90,9 @@ const photosReducer = (state = initialState, action) => {
             return {...state, [action.photo.id]: {...action.photo}}
 
         case CREATE_PHOTO:
+            return {...state, [action.photo.id]: {...action.photo}}
+
+        case UPDATE_PHOTO:
             return {...state, [action.photo.id]: {...action.photo}}
 
         default:

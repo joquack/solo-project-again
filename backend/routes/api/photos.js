@@ -11,12 +11,21 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     const id = parseInt(req.params.id)
     const photo = await db.Photo.findByPk(id)
-    // console.log( '\n BACKEND ROUTE', photo)
     return res.json(photo)
 })
 
 router.post('/new', async (req, res) => {
     const photo = await db.Photo.create(req.body)
+    return res.json(photo)
+})
+
+router.put('/edit/:id', async (req, res) => {
+    const id = parseInt(req.params.id)
+
+    const photo = await db.Photo.findByPk(id)
+    photo.photoName = req.body.photoName
+
+    await photo.save()
     return res.json(photo)
 })
 
