@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {getOnePhoto, deletePhoto} from '../../store/photos'
 import { useHistory } from 'react-router-dom';
+import { getAllComments } from '../../store/comments';
 
 function OnePhotoPage () {
     const {id} = useParams()
@@ -10,10 +11,11 @@ function OnePhotoPage () {
     const history = useHistory()
     const user = useSelector(state => state.session.user)
     const photo = useSelector(state => state?.photos)[id]
-    // console.log('1 COMPONENT HEREEE ***************************', useSelector(state => state.photos)[id])
+    console.log('1 COMPONENT HEREEE ***************************', useSelector(state => state.comments))
 
     useEffect(() => {
         dispatch(getOnePhoto(id))
+        dispatch(getAllComments())
     },[dispatch, id])
 
     const handleEditClick = e => {
