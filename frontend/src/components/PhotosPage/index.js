@@ -6,7 +6,7 @@ import './index.css'
 function PhotosPage () {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
-    const photos = Object.values(useSelector(state => state.photos)).reverse()
+    const photos = Object.values(useSelector(state => state?.photos)).reverse()
 
     // const [allPhotos, setAllPhotos] = useState([])
     // const photos = Object.values(photosObj)
