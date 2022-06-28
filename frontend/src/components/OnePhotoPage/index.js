@@ -39,10 +39,11 @@ function OnePhotoPage () {
             {commentArr.map(comment => {
                 return (
                     <>
-                    <div key={comment.id}> <span>{comment.User.username}</span> {`${comment.body}`}</div>
+                    <div key={comment.id}><span className='username'>{comment.User.username}</span>{` ${comment.body}`}</div>
                     </>
                 )
             })}
+            {/* <textarea></textarea> */}
         </>
     )
 }
