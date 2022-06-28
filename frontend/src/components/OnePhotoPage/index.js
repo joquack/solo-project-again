@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import {getOnePhoto, deletePhoto} from '../../store/photos'
 import { useHistory } from 'react-router-dom';
 import { getAllComments } from '../../store/comments';
+import './index.css'
 
 function OnePhotoPage () {
     const {id} = useParams()
@@ -11,7 +12,8 @@ function OnePhotoPage () {
     const history = useHistory()
     const user = useSelector(state => state.session.user)
     const photo = useSelector(state => state?.photos)[id]
-    console.log('1 COMPONENT HEREEE ***************************', useSelector(state => state.comments))
+    const commentArr = Object.values(useSelector(state => state.comments)).filter(comment => comment.photoId == id)
+    console.log('1 COMPONENT HEREEE ***************************', commentArr)
 
     useEffect(() => {
         dispatch(getOnePhoto(id))
@@ -34,6 +36,13 @@ function OnePhotoPage () {
             <img src={`${photo.source}`}></img>
             <span><button onClick={handleEditClick}>Edit Photo</button></span>
             <span><button onClick={handleDeleteClick}>Delete Photo</button></span>
+            {commentArr.map(comment => {
+                return (
+                    <>
+                    <div key={comment.id}> <span>{comment.User.username}</span> {`${comment.body}`}</div>
+                    </>
+                )
+            })}
         </>
     )
 }
