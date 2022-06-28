@@ -8,4 +8,9 @@ router.get('/', async (req, res) => {
     return res.json(comments)
 })
 
+router.post('/new', async (req, res) => {
+    const comment = await db.Comment.create(req.body)
+    return res.json(comment)
+})
+
 module.exports = router

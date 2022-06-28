@@ -13,8 +13,8 @@ function OnePhotoPage() {
     const user = useSelector(state => state.session.user)
     const userId = user.id
     const photo = useSelector(state => state?.photos)[id]
-    const commentArr = Object.values(useSelector(state => state.comments)).filter(comment => comment.photoId == id)
     // console.log('1 COMPONENT HEREEE ***************************', commentArr)
+    const commentArr = Object.values(useSelector(state => state?.comments)).filter(comment => comment.photoId == id)
     const [comment, setComment] = useState('')
 
     const changeComment = e => setComment(e.target.value)
@@ -22,7 +22,7 @@ function OnePhotoPage() {
     useEffect(() => {
         dispatch(getOnePhoto(id))
         dispatch(getAllComments())
-    }, [dispatch, id])
+    }, [dispatch])
 
     const handleEditPhoto = e => {
         e.preventDefault()
@@ -35,10 +35,11 @@ function OnePhotoPage() {
     }
 
     const handleCreateComment = e => {
+        const body = comment
+        const photoId = id
         e.preventDefault()
-        const data = { userId, id, comment }
+        const data = { userId, photoId, body }
         dispatch(createComment(data))
-
     }
 
     return (
@@ -54,13 +55,13 @@ function OnePhotoPage() {
                     </>
                 )
             })}
-            <form>
-                <input
-                    placeholder='Add a Comment'
-                    value={comment}
-                    onChange={changeComment}
-                />
-
+            <form onSubmit={handleCreateComment}>
+                    <input
+                        placeholder='Add a Comment'
+                        value={comment}
+                        onChange={changeComment}
+                    />
+                <button type='submit'>Add Comment</button>
             </form>
         </>
     )
