@@ -32,6 +32,7 @@ function OnePhotoPage() {
     }
 
     const handleDeletePhoto = e => {
+        e.preventDefault()
         dispatch(deletePhoto(id))
         history.push('/photos')
     }
