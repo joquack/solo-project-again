@@ -47,6 +47,10 @@ function App() {
           <Route path='/edit/:id'>
             <EditPhotoPage />
           </Route>
+
+          <Route path=''>
+            <h1>Page Not Found</h1>
+          </Route>
         </Switch>
       )}
     </>

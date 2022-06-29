@@ -14,7 +14,7 @@ function OnePhotoPage() {
     // const userId = user.id
     const photo = useSelector(state => state.photos[id] && state.photos[id])
     const commentArr = Object.values(useSelector(state => state.comments && state.comments)).filter(comment => comment.photoId == id)
-    console.log('1 COMPONENT HEREEE ***************************', commentArr)
+    // console.log('1 COMPONENT HEREEE ***************************', commentArr)
     const [comment, setComment] = useState('')
     // const [name, setName] = useState(photo.photoName || 'duck')
 
@@ -49,7 +49,7 @@ function OnePhotoPage() {
 
     const handleDeleteComment = (e, commentId) => {
         e.preventDefault()
-        console.log('DELETE BUTTONNNNNNNNNNNNNNNNNNNNNNNNNN', commentId)
+        // console.log('DELETE BUTTONNNNNNNNNNNNNNNNNNNNNNNNNN', commentId)
         dispatch(deleteComment(commentId))
         .then(() => getAllComments())
     }
