@@ -14,9 +14,9 @@ const create_comment = comment => ({
     comment
 })
 
-const delete_comment = commentId => ({
+const delete_comment = comment => ({
     type: DELETE_COMMENT,
-    commentId
+    comment
 })
 
 export const getAllComments = () => async dispatch => {
@@ -42,6 +42,17 @@ export const createComment = data => async dispatch => {
     }
   }
 
+  export const deleteComment = commentId => async dispatch => {
+    const response = await csrfFetch(`/api/comments/delete/${commentId}`, {
+        method: 'DELETE'
+    })
+
+    if(response.ok){
+        const deletedComment = await response.json()
+        dispatch(delete_comment(deletedComment))
+    }
+}
+
 const initialState = {}
 
 const commentsReducer = (state = initialState, action) => {
@@ -56,9 +67,9 @@ const commentsReducer = (state = initialState, action) => {
         case CREATE_COMMENT:
             return {...state, [action.comment.id]: action.comment}
 
-        // case DELETE_PHOTO:
-        //     delete(newState[action.photoId.id])
-        //     return newState
+        case DELETE_COMMENT:
+            delete(newState[action.comment.id])
+            return newState
 
         default:
             return state

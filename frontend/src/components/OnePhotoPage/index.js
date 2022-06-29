@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getAllPhotos, getOnePhoto, deletePhoto } from '../../store/photos'
 import { useHistory } from 'react-router-dom';
-import { getAllComments, createComment } from '../../store/comments';
+import { getAllComments, createComment, deleteComment } from '../../store/comments';
 import './index.css'
 
 function OnePhotoPage() {
@@ -47,6 +47,13 @@ function OnePhotoPage() {
         setComment('')
     }
 
+    const handleDeleteComment = (e, commentId) => {
+        e.preventDefault()
+        console.log('DELETE BUTTONNNNNNNNNNNNNNNNNNNNNNNNNN', commentId)
+        dispatch(deleteComment(commentId))
+        .then(() => getAllComments())
+    }
+
     return (
         <>
             {photo && <h2>{photo.photoName}</h2>}
@@ -57,6 +64,7 @@ function OnePhotoPage() {
                 return (
                     <div key={comment.id}>
                         <span className='username'>{comment?.User?.username}</span>{` ${comment?.body}`}
+                        <button onClick={e => handleDeleteComment(e, comment.id)}>Delete Comment</button>
                     </div>
                 )
             })}

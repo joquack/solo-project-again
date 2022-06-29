@@ -13,4 +13,12 @@ router.post('/new', async (req, res) => {
     return res.json(comment)
 })
 
+router.delete('/delete/:id', async (req, res) => {
+    const id = parseInt(req.params.id)
+
+    const comment = await db.Comment.findByPk(id)
+    await comment.destroy()
+    return res.json(comment)
+})
+
 module.exports = router
