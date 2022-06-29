@@ -31,26 +31,26 @@ function OnePhotoPage() {
         history.push(`/edit/${id}`)
     }
 
-    const handleDeletePhoto = e => {
+    const handleDeletePhoto = async e => {
         e.preventDefault()
-        dispatch(deletePhoto(id))
+        await dispatch(deletePhoto(id))
         history.push('/photos')
     }
 
-    const handleCreateComment = e => {
+    const handleCreateComment = async e => {
         const body = comment
         const photoId = id
         e.preventDefault()
         const data = { userId, photoId, body }
-        dispatch(createComment(data))
+        await dispatch(createComment(data))
         .then(() => dispatch(getAllComments()))
         setComment('')
     }
 
-    const handleDeleteComment = (e, commentId) => {
+    const handleDeleteComment = async (e, commentId) => {
         e.preventDefault()
         // console.log('DELETE BUTTONNNNNNNNNNNNNNNNNNNNNNNNNN', commentId)
-        dispatch(deleteComment(commentId))
+        await dispatch(deleteComment(commentId))
         .then(() => getAllComments())
     }
 
