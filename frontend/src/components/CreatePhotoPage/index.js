@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {createPhoto} from '../../store/photos'
+import {createPhoto, getAllPhotos} from '../../store/photos'
 import { useHistory } from 'react-router-dom';
 
 function CreatePhotoPage() {

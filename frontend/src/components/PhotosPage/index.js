@@ -24,7 +24,7 @@ function PhotosPage () {
         <h2>All Photos</h2>
         <div>
             <ul>
-            {photos.map(img => {
+            {photos && photos.map(img => {
                 return <li key={img.id}><Link to={`/photos/${img.id}`}><img src={`${img.source}`}></img></Link></li>
             })}
             </ul>

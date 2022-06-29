@@ -54,7 +54,7 @@ const commentsReducer = (state = initialState, action) => {
             return newState
 
         case CREATE_COMMENT:
-            return {...state, [action.comment.id]: {...action.comment}}
+            return {...state, [action.comment.id]: action.comment}
 
         // case DELETE_PHOTO:
         //     delete(newState[action.photoId.id])

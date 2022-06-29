@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getOnePhoto, deletePhoto } from '../../store/photos'
+import { getAllPhotos, getOnePhoto, deletePhoto } from '../../store/photos'
 import { useHistory } from 'react-router-dom';
 import { getAllComments, createComment } from '../../store/comments';
 import './index.css'
@@ -10,16 +10,18 @@ function OnePhotoPage() {
     const { id } = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
-    const user = useSelector(state => state.session.user)
-    const userId = user.id
-    const photo = useSelector(state => state?.photos)[id]
-    // console.log('1 COMPONENT HEREEE ***************************', commentArr)
-    const commentArr = Object.values(useSelector(state => state?.comments)).filter(comment => comment.photoId == id)
+    const userId = useSelector(state => state.session.user && state.session.user.id)
+    // const userId = user.id
+    const photo = useSelector(state => state.photos[id] && state.photos[id])
+    const commentArr = Object.values(useSelector(state => state.comments && state.comments)).filter(comment => comment.photoId == id)
+    console.log('1 COMPONENT HEREEE ***************************', commentArr)
     const [comment, setComment] = useState('')
+    // const [name, setName] = useState(photo.photoName || 'duck')
 
     const changeComment = e => setComment(e.target.value)
 
     useEffect(() => {
+        dispatch(getAllPhotos())
         dispatch(getOnePhoto(id))
         dispatch(getAllComments())
     }, [dispatch])
@@ -40,19 +42,21 @@ function OnePhotoPage() {
         e.preventDefault()
         const data = { userId, photoId, body }
         dispatch(createComment(data))
+        .then(() => dispatch(getAllComments()))
+        setComment('')
     }
 
     return (
         <>
-            <h2>{photo.photoName}</h2>
-            <img src={`${photo.source}`}></img>
+            {photo && <h2>{photo.photoName}</h2>}
+            {photo && <img src={`${photo.source}`}></img>}
             <span><button onClick={handleEditPhoto}>Edit Photo</button></span>
             <span><button onClick={handleDeletePhoto}>Delete Photo</button></span>
-            {commentArr.map(comment => {
+            {commentArr && commentArr.map(comment => {
                 return (
-                    <>
-                        <div key={comment.id}><span className='username'>{comment.User.username}</span>{` ${comment.body}`}</div>
-                    </>
+                    <div key={comment.id}>
+                        <span className='username'>{comment?.User?.username}</span>{` ${comment?.body}`}
+                    </div>
                 )
             })}
             <form onSubmit={handleCreateComment}>

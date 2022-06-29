@@ -94,7 +94,7 @@ export const deletePhoto = photoId => async dispatch => {
 const initialState = {}
 
 const photosReducer = (state = initialState, action) => {
-    const newState = {...state}
+    let newState = {}
     switch (action.type) {
         case LOAD_PHOTOS:
             console.log('REDUCER',action.photos)
@@ -104,13 +104,13 @@ const photosReducer = (state = initialState, action) => {
             return newState
 
         case LOAD_ONE:
-            return {...state, [action.photo.id]: {...action.photo}}
-
+            newState[action.photo.id] = action.photo
+            return newState
         case CREATE_PHOTO:
-            return {...state, [action.photo.id]: {...action.photo}}
+            return {...state, [action.photo.id]: action.photo}
 
         case UPDATE_PHOTO:
-            return {...state, [action.photo.id]: {...action.photo}}
+            return {...state, [action.photo.id]: action.photo}
 
         case DELETE_PHOTO:
             delete(newState[action.photoId.id])
