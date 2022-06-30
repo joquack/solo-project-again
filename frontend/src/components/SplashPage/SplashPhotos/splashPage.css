@@ -1,8 +1,15 @@
 *{
     margin: 0;
-    padding: 0;
+    padding: 8;
     font-family: sans-serif;
     color:#E8E6E3;
+}
+button{
+    background-color: transparent;
+}
+button:hover{
+    background-color: white;
+    color: #212124;
 }
 body{
     background-color: #1B2124;
