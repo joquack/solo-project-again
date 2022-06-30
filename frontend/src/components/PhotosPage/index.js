@@ -22,6 +22,7 @@ function PhotosPage () {
     return (
         <>
         <h2>All Photos</h2>
+        <Link to='/create'>Create A New Photo</Link>
         <div>
             <ul>
             {photos && photos.map(img => {

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Navigation from '../Navigation';
 import * as sessionActions from "../../store/session";
 import './SplashPhotos/splashPage.css'
+import { Link } from 'react-router-dom';
 
 function SplashPage() {
     const dispatch = useDispatch();
@@ -14,8 +15,13 @@ function SplashPage() {
     return (
     <>
         <div className='banner'>
-            <Navigation isLoaded={isLoaded}/>
-            <h1>Splash page here</h1>
+            <div className='navbar'>
+                <ul>
+                    <li>Splash page here</li>
+                    <li><Link to='/photos'>All Photos</Link></li>
+                    <li><Navigation isLoaded={isLoaded}/></li>
+                </ul>
+        </div>
         </div>
     </>
     )
