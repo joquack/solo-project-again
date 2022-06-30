@@ -21,6 +21,10 @@ function CreatePhotoPage() {
         dispatch(createPhoto(data))
         history.push('/photos')
     }
+    const handleCancel = e => {
+        e.preventDefault()
+        history.push('/photos')
+    }
 
     return (
         <>
@@ -47,6 +51,8 @@ function CreatePhotoPage() {
                 />
             </label>
             <button type="submit">Upload Photo</button>
+            <button onClick={handleCancel}>Cancel</button>
+
         </form>
         </>
     )

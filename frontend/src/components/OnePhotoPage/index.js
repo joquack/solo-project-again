@@ -54,6 +54,7 @@ function OnePhotoPage() {
         .then(() => getAllComments())
     }
 
+
     return (
         <>
             <Link to='/photos'>All Photos</Link>
