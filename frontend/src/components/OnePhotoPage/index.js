@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getAllPhotos, getOnePhoto, deletePhoto } from '../../store/photos'
 import { useHistory } from 'react-router-dom';
 import { getAllComments, createComment, deleteComment } from '../../store/comments';
@@ -56,6 +56,7 @@ function OnePhotoPage() {
 
     return (
         <>
+            <Link to='/photos'>All Photos</Link>
             {photo && <h2>{photo.photoName}</h2>}
             {photo && <img src={`${photo.source}`}></img>}
             <span><button onClick={handleEditPhoto}>Edit Photo</button></span>
