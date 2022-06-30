@@ -11,6 +11,7 @@ import PhotosPage from "./components/PhotosPage";
 import OnePhotoPage from "./components/OnePhotoPage";
 import CreatePhotoPage from "./components/CreatePhotoPage";
 import EditPhotoPage from "./components/EditPhotoPage";
+import SplashPage from "./components/SplashPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path='/'>
+            <SplashPage />
+          </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>
