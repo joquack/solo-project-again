@@ -40,7 +40,9 @@ function OnePhotoPage() {
         const body = comment
         const photoId = id
         e.preventDefault()
+        setErrors([])
         const data = { userId, photoId, body }
+
         const createdComment = await dispatch(createComment(data))
         .then(() => dispatch(getAllComments()))
         .catch(
@@ -80,6 +82,13 @@ function OnePhotoPage() {
                 )
             })}
             <form onSubmit={handleCreateComment}>
+            <div className='errors'>
+                <ul>
+                    {errors.map((error, i) => (
+                        <li key={i}>{error}</li>
+                    ))}
+                </ul>
+            </div>
                     <input
                         placeholder='Add a Comment'
                         value={comment}
