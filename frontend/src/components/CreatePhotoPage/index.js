@@ -17,14 +17,14 @@ function CreatePhotoPage() {
     const changesource = e => setSource(e.target.value)
 
     const handleSubmit = async e => {
-        setErrors([])
         e.preventDefault()
+        setErrors([])
         const data = {userId, photoName, source}
 
         const createdPhoto = await dispatch(createPhoto(data)).catch(
             async(res) => {
                 const validations = await res.json()
-                
+
                 if(validations && validations.errors)
                     setErrors(validations.errors)
             }
@@ -33,6 +33,7 @@ function CreatePhotoPage() {
         if(createdPhoto)
             history.push('/photos')
     }
+
     const handleCancel = e => {
         e.preventDefault()
         history.push('/photos')
@@ -44,9 +45,9 @@ function CreatePhotoPage() {
         <form onSubmit={handleSubmit}>
             <div className='errors'>
                 <ul>
-                    {errors.map((error, i) => {
+                    {errors.map((error, i) => (
                         <li key={i}>{error}</li>
-                    })}
+                    ))}
                 </ul>
             </div>
             <label>

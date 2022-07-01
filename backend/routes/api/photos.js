@@ -2,12 +2,12 @@ const express = require('express')
 const router = express.Router()
 const db = require("../../db/models")
 const {requireAuth} = require('../../utils/auth')
+const {check} = require('express-validator')
 const {handleValidationErrors} = require('../../utils/validation')
 
 const photoValidation = [
     check('photoName').exists({checkFalsey: true}).withMessage('Enter a valid photo name')
-    .isLength({min:1, max:100}).withMessage('Enter photo name that is between 1 and 24 characters long'),
-
+    .isLength({min:1, max:24}).withMessage('Enter photo name that is between 1 and 24 characters long'),
     handleValidationErrors
 ]
 
