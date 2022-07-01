@@ -42,6 +42,13 @@ function EditPhotoPage () {
     return(
         <div>
             <form onSubmit={handleSubmit}>
+            <div className='errors'>
+                <ul>
+                    {errors.map((error, i) => (
+                        <li key={i}>{error}</li>
+                    ))}
+                </ul>
+            </div>
             <label>
                 Photo Name
                 <input
