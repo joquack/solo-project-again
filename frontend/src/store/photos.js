@@ -75,9 +75,9 @@ export const getOnePhoto = (id) => async dispatch => {
     });
 
     if (response.ok){
-        const photo = await response.json();
-        dispatch(update_photo(photo));
-        return photo;
+        const photo = await response.json()
+        dispatch(update_photo(photo))
+        return photo
     }
 };
 

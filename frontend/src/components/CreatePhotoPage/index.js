@@ -28,7 +28,6 @@ function CreatePhotoPage() {
 
                 if(validations && validations.errors)
                     setErrors(validations.errors)
-
             }
         )
 
