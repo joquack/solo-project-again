@@ -16,6 +16,7 @@ function OnePhotoPage() {
     const commentArr = Object.values(useSelector(state => state.comments && state.comments)).filter(comment => comment.photoId == id)
     const [comment, setComment] = useState('')
     const [errors, setErrors] = useState([]);
+    console.log('photo ARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR', photo)
 
     const changeComment = e => setComment(e.target.value)
 
@@ -60,7 +61,6 @@ function OnePhotoPage() {
 
     const handleDeleteComment = async (e, commentId) => {
         e.preventDefault()
-        // console.log('DELETE BUTTONNNNNNNNNNNNNNNNNNNNNNNNNN', commentId)
         await dispatch(deleteComment(commentId))
         .then(() => getAllComments())
     }
@@ -71,13 +71,13 @@ function OnePhotoPage() {
             <Link to='/photos'>All Photos</Link>
             {photo && <h2>{photo.photoName}</h2>}
             {photo && <img src={`${photo.source}`}></img>}
-            <span><button onClick={handleEditPhoto}>Edit Photo</button></span>
-            <span><button onClick={handleDeletePhoto}>Delete Photo</button></span>
+            {photo.userId === userId ? <span><button onClick={handleEditPhoto}>Edit Photo</button><button onClick={handleDeletePhoto}>Delete Photo</button></span> : <></>}
             {commentArr && commentArr.map(comment => {
                 return (
                     <div key={comment.id}>
                         <span className='username'>{comment?.User?.username}</span>{` ${comment?.body}`}
-                        <button onClick={e => handleDeleteComment(e, comment.id)}>Delete Comment</button>
+                        {comment.userId === userId ? <button onClick={e => handleDeleteComment(e, comment.id)}>Delete Comment</button> : <></>}
+
                     </div>
                 )
             })}
