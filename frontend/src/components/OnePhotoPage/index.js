@@ -16,7 +16,7 @@ function OnePhotoPage() {
     const commentArr = Object.values(useSelector(state => state.comments && state.comments)).filter(comment => comment.photoId == id)
     const [comment, setComment] = useState('')
     const [errors, setErrors] = useState([]);
-    console.log('photo ARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR', photo)
+    // console.log('photo ARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR', userId)
 
     const changeComment = e => setComment(e.target.value)
 
@@ -71,7 +71,11 @@ function OnePhotoPage() {
             <Link to='/photos'>All Photos</Link>
             {photo && <h2>{photo.photoName}</h2>}
             {photo && <img src={`${photo.source}`}></img>}
-            {photo.userId === userId ? <span><button onClick={handleEditPhoto}>Edit Photo</button><button onClick={handleDeletePhoto}>Delete Photo</button></span> : <></>}
+            {photo && userId && photo.userId === userId ?
+                <span><button onClick={handleEditPhoto}>Edit Photo</button>
+                <button onClick={handleDeletePhoto}>Delete Photo</button></span>
+                : <></>}
+
             {commentArr && commentArr.map(comment => {
                 return (
                     <div key={comment.id}>
@@ -81,6 +85,7 @@ function OnePhotoPage() {
                     </div>
                 )
             })}
+
             <form onSubmit={handleCreateComment}>
             <div className='errors'>
                 <ul>
@@ -89,11 +94,11 @@ function OnePhotoPage() {
                     ))}
                 </ul>
             </div>
-                    <input
-                        placeholder='Add a Comment'
-                        value={comment}
-                        onChange={changeComment}
-                    />
+                <input
+                    placeholder='Add a Comment'
+                    value={comment}
+                    onChange={changeComment}
+                />
                 <button type='submit'>Add Comment</button>
             </form>
         </>
