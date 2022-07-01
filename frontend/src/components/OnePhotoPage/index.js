@@ -14,9 +14,8 @@ function OnePhotoPage() {
     // const userId = user.id
     const photo = useSelector(state => state.photos[id] && state.photos[id])
     const commentArr = Object.values(useSelector(state => state.comments && state.comments)).filter(comment => comment.photoId == id)
-    // console.log('1 COMPONENT HEREEE ***************************', commentArr)
     const [comment, setComment] = useState('')
-    // const [name, setName] = useState(photo.photoName || 'duck')
+    const [errors, setErrors] = useState([]);
 
     const changeComment = e => setComment(e.target.value)
 
@@ -42,9 +41,19 @@ function OnePhotoPage() {
         const photoId = id
         e.preventDefault()
         const data = { userId, photoId, body }
-        await dispatch(createComment(data))
+        const createdComment = await dispatch(createComment(data))
         .then(() => dispatch(getAllComments()))
-        setComment('')
+        .catch(
+            async(res) => {
+                const validations = await res.json()
+
+                if(validations && validations.errors)
+                    setErrors(validations.errors)
+            }
+        )
+        if(createdComment)
+            await dispatch(getAllComments())
+            setComment('')
     }
 
     const handleDeleteComment = async (e, commentId) => {
