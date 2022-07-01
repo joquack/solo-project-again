@@ -11,15 +11,27 @@ function CreatePhotoPage() {
 
     const [photoName, setPhotoName] = useState("");
     const [source, setSource] = useState("");
+    const [errors, setErrors] = useState([]);
 
     const changeName = e => setPhotoName(e.target.value)
     const changesource = e => setSource(e.target.value)
 
     const handleSubmit = async e => {
+        setErrors([])
         e.preventDefault()
         const data = {userId, photoName, source}
-        dispatch(createPhoto(data))
-        history.push('/photos')
+
+        const createdPhoto = await dispatch(createPhoto(data)).catch(
+            async(res) => {
+                const validations = await res.json()
+                
+                if(validations && validations.errors)
+                    setErrors(validations.errors)
+            }
+        )
+
+        if(createdPhoto)
+            history.push('/photos')
     }
     const handleCancel = e => {
         e.preventDefault()
@@ -30,6 +42,13 @@ function CreatePhotoPage() {
         <>
         <h1>Create New Photo</h1>
         <form onSubmit={handleSubmit}>
+            <div className='errors'>
+                <ul>
+                    {errors.map((error, i) => {
+                        <li key={i}>{error}</li>
+                    })}
+                </ul>
+            </div>
             <label>
                 Photo Name
                 <input
