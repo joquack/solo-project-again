@@ -31,11 +31,10 @@ function CreatePhotoPage() {
 
             }
         )
-        // console.log('HANDLE SUBMIT HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE', createdPhoto)
-        if(createdPhoto){
-            console.log('PASSED VALIDATIONSSSSSSSSSSSSSSSSSSSSSSSS')
+
+        if(createdPhoto)
             history.push('/photos')
-        }
+
     }
 
     const handleCancel = e => {
