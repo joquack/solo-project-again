@@ -61,6 +61,7 @@ export const getOnePhoto = (id) => async dispatch => {
     if(response.ok){
         const photo = await response.json()
         dispatch(create_photo(photo))
+        return photo
     }
   }
 

@@ -21,11 +21,7 @@ function CreatePhotoPage() {
         setErrors([])
         const data = {userId, photoName, source}
 
-        const createdPhoto = await dispatch(createPhoto(data).then(() => {
-            if(createdPhoto){
-                history.push('/photos')
-            }
-        }))
+        const createdPhoto = await dispatch(createPhoto(data))
         .catch(
             async(res) => {
                 const validations = await res.json()
@@ -35,11 +31,11 @@ function CreatePhotoPage() {
 
             }
         )
-
-        // if(createdPhoto){
-        //     console.log('PASSED VALIDATIONSSSSSSSSSSSSSSSSSSSSSSSS')
-        //     history.push('/photos')
-        // }
+        // console.log('HANDLE SUBMIT HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE', createdPhoto)
+        if(createdPhoto){
+            console.log('PASSED VALIDATIONSSSSSSSSSSSSSSSSSSSSSSSS')
+            history.push('/photos')
+        }
     }
 
     const handleCancel = e => {
