@@ -1,6 +1,9 @@
 li {
  list-style-type: none;
 }
+div{
+    text-align: center;
+}
 
 .container{
     margin: 20px;

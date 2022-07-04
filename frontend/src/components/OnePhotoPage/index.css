@@ -9,4 +9,8 @@
 
 input, textarea {
     background-color : transparent;
-  }
+}
+
+  .comments{
+    margin: 8px;
+}
