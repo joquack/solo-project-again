@@ -1,11 +1,30 @@
 li {
  list-style-type: none;
 }
-.photoimg {
+
+.container{
+    margin: 20px;
+    padding: 0;
+    text-align: center;
+
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-auto-rows: 280;
+    grid-gap: 8px;
+}
+
+.gallery-item{
+    height: 100%;
+    width: auto;
+    position: relative;
+}
+
+.gallery-item .image{
     height: 250px;
     width: auto;
 }
-/* .photoimg:hover {
-    height: 300;
+
+/* .photoimg {
+    height: 250px;
     width: auto;
 } */
