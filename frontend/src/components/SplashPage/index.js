@@ -16,11 +16,11 @@ function SplashPage() {
     <>
         <div className='banner'>
             <div className='navbar'>
-                <ul>
-                    <li>Splash page here</li>
-                    <li><Link to='/photos'>All Photos</Link></li>
-                    <li><Navigation isLoaded={isLoaded}/></li>
-                </ul>
+                    <h2 className='topbar'>Splash page here</h2>
+                    <h2 className='topbar'><Link to='/photos'>All Photos</Link></h2>
+                <div>
+                    <div><Navigation isLoaded={isLoaded}/></div>
+                </div>
         </div>
         </div>
     </>

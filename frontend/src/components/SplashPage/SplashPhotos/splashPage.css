@@ -33,8 +33,13 @@ body{
     justify-content: space-between;
 }
 
-.navbar ul li{
+.navbar div{
     list-style: none;
     display: inline-block;
     margin: 0 20px;
+    text-align: center;
 }
+
+/* .topbar {
+    position: relative;
+} */
