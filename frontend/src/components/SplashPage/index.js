@@ -17,7 +17,7 @@ function SplashPage() {
         <div className='banner'>
             <div className='navbar'>
                     <h2 className='topbar'>Splash page here</h2>
-                    <h2 className='topbar'><Link to='/photos'>All Photos</Link></h2>
+                    <h2 className='topbar'><Link to='/photos'>Explore All Photos</Link></h2>
                 <div>
                     <div><Navigation isLoaded={isLoaded}/></div>
                 </div>
