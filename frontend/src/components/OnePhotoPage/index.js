@@ -16,7 +16,6 @@ function OnePhotoPage() {
     const commentArr = Object.values(useSelector(state => state.comments && state.comments)).filter(comment => comment.photoId == id)
     const [comment, setComment] = useState('')
     const [errors, setErrors] = useState([]);
-    // console.log('photo ARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR', userId)
 
     const changeComment = e => setComment(e.target.value)
 
