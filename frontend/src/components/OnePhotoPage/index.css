@@ -11,6 +11,13 @@ input, textarea {
     background-color : transparent;
 }
 
-  .comments{
+.comments {
     margin: 8px;
+}
+
+button {
+    margin: 8px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 15%;
 }
