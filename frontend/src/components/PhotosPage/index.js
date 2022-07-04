@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import {getAllPhotos} from '../../store/photos'
 import Navigation from '../Navigation';
 import * as sessionActions from "../../store/session";
+import './index.css'
 
 import './index.css'
 function PhotosPage () {
@@ -35,7 +36,7 @@ function PhotosPage () {
         <div>
             <ul>
             {photos && photos.map(img => {
-                return <li key={img.id}><Link to={`/photos/${img.id}`}><img src={`${img.source}`}></img></Link></li>
+                return <li key={img.id}><Link to={`/photos/${img.id}`}><img className='photoimg' src={`${img.source}`}></img></Link></li>
             })}
             </ul>
         </div>
