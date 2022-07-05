@@ -1,17 +1,17 @@
-*{
+* {
     margin: 0;
     padding: 8;
     font-family: sans-serif;
     color:#E8E6E3;
 }
-button{
+button {
     background-color: transparent;
 }
-button:hover{
+button:hover {
     background-color: white;
     color: #212124;
 }
-body{
+body {
     background-color: #1B2124;
 
 }
@@ -24,7 +24,7 @@ body{
     background-position: center;
 }
 
-.navbar{
+.navbar {
     width: 100vw;
     margin: auto;
     padding: 20px 0;
@@ -35,7 +35,7 @@ body{
     text-transform: uppercase;
 }
 
-.navbar div{
+.navbar div {
     list-style: none;
     display: inline-block;
     margin: 0 20px;
@@ -51,4 +51,12 @@ body{
 .welcome {
     margin-left: 5px;
     font-size: 25px;
+}
+
+.demo-user {
+    background-color: chocolate;
+}
+
+.demo-user:hover {
+    background-color: rgb(161, 87, 34);
 }

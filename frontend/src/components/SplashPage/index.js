@@ -7,10 +7,19 @@ import { Link } from 'react-router-dom';
 
 function SplashPage() {
     const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user)
     const [isLoaded, setIsLoaded] = useState(false);
+    const [credential, setCredential] = useState('demo@user.io');
+    const [password, setPassword] = useState('password');
+
     useEffect(() => {
         dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
     }, [dispatch]);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        return await dispatch(sessionActions.login({ credential, password }))
+      }
 
     return (
     <>
@@ -22,7 +31,10 @@ function SplashPage() {
                 </div>
                     <h2 className='topbar'><Link to='/photos'>Explore All Photos</Link></h2>
                 <div>
-                    <div><Navigation isLoaded={isLoaded}/></div>
+                        {!user && <button className='demo-user' onClick={handleSubmit}>Demo User</button>}
+                    <div>
+                        <Navigation isLoaded={isLoaded}/>
+                    </div>
                 </div>
         </div>
         </div>
