@@ -2,6 +2,8 @@
 ## About 
 Stickr is a site to find and upload photos. Users can create new photos and comment of other existing photos
 
+Link to live site: [http://stickr.herokuapp.com/](http://stickr.herokuapp.com/)
+
 [Database Schema](https://github.com/joquack/solo-project-again/wiki/Database-Schema)
 
 [Feature List](https://github.com/joquack/solo-project-again/wiki/Feature-List)
