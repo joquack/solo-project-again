@@ -30,7 +30,7 @@ To use this repository you will:
 
 4. Setup your DATABASE and your USER with the PASSWORD for your postgreSQL with what you used in the .env
 
-5. Migrate and seed your database using: 
+5. Migrate and seed the database using: 
 ```
 npx dotenv sequelize db:create
 npx dotenv sequelize db:migrate
