@@ -24,7 +24,7 @@ Link to live site: [http://stickr.herokuapp.com/](http://stickr.herokuapp.com/)
 To use this repository you will: 
 1. Clone repo using ```git clone https://github.com/joquack/solo-project-again.git```
 
-2. From root folder run ```npm install``` to install all dependencies 
+2. From root folder, run ```npm install``` to install all dependencies 
 
 3. Create a .env file based on the .envexample in the backend
 
