@@ -67,8 +67,9 @@ function OnePhotoPage() {
 
 
     return (
-        <>
-            <Link to='/photos'>All Photos</Link>
+        <>  <div className='all-photos'>
+                <Link to='/photos'>All Photos</Link>
+            </div>
             {photo && <h2>{photo.photoName}</h2>}
             {photo && <img src={`${photo.source}`} className='onephoto'></img>}
             {photo && userId && photo.userId === userId ?

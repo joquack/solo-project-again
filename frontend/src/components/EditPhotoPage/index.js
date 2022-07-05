@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import {updatePhoto} from '../../store/photos'
+import './index.css'
 
 function EditPhotoPage () {
     const {id} = useParams()
@@ -40,7 +41,8 @@ function EditPhotoPage () {
     }
 
     return(
-        <div>
+        <div className='edit-form'>
+            <h1 className='edit-header'>Edit Photo</h1>
             <form onSubmit={handleSubmit}>
             <div className='errors'>
                 <ul>

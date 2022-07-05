@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {createPhoto, getAllPhotos} from '../../store/photos'
 import { useHistory } from 'react-router-dom';
+import './index.css'
 
 function CreatePhotoPage() {
     const dispatch = useDispatch()
@@ -43,7 +44,9 @@ function CreatePhotoPage() {
 
     return (
         <>
-        <h1>Create New Photo</h1>
+        <h1 className='create-header'>Create New Photo</h1>
+        <div className='create-form'>
+
         <form onSubmit={handleSubmit}>
             <div className='errors'>
                 <ul>
@@ -72,10 +75,13 @@ function CreatePhotoPage() {
                     required
                 />
             </label>
+            <div className='create-buttons'>
             <button type="submit">Upload Photo</button>
             <button onClick={handleCancel}>Cancel</button>
+            </div>
 
         </form>
+        </div>
         </>
     )
 }
