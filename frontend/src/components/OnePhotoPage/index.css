@@ -1,5 +1,7 @@
 .username{
     font-weight: bold;
+    padding-right: 8px;
+    color:rgb(93, 105, 141);
 }
 
 .logout-button{

@@ -80,7 +80,9 @@ function OnePhotoPage() {
             {commentArr && commentArr.map(comment => {
                 return (
                     <div key={comment.id} className='comments'>
-                        <span className='username'>{comment?.User?.username}</span>{` ${comment?.body}`}
+                        <span className='username'>{comment?.User?.username}</span>
+                        <span className='comment-body'>{` ${comment?.body}`}</span>
+
                         {comment.userId === userId ? <button onClick={e => handleDeleteComment(e, comment.id)} className='delete-button'>Delete Comment</button> : <></>}
 
                     </div>
