@@ -56,24 +56,27 @@ function CreatePhotoPage() {
                 </ul>
             </div>
             <label>
-                Photo Name
-                <input
+                <div>Photo Name
+                <input className='create-input'
                     type="text"
                     placeholder='Name'
                     value={photoName}
                     onChange={changeName}
                     required
                     />
+                </div>
             </label>
             <label>
-                Source
-                <input
+                <div>
+                    Source
+                <input className='create-input'
                     type="text"
                     placeholder='Image URL'
                     value={source}
                     onChange={changesource}
                     required
                 />
+                </div>
             </label>
             <div className='create-buttons'>
             <button type="submit">Upload Photo</button>

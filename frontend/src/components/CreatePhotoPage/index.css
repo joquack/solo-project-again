@@ -1,9 +1,19 @@
 .create-buttons {
     padding: 6px;
 }
+
 .create-form {
     margin: 20px;
 }
+
 .create-header {
     margin: 15px;
+}
+
+label + label {
+    margin-left: 10px;
+}
+
+.create-input {
+    margin-left: 10px;
 }
