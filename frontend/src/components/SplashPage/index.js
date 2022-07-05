@@ -4,6 +4,7 @@ import Navigation from '../Navigation';
 import * as sessionActions from "../../store/session";
 import './SplashPhotos/splashPage.css'
 import { Link } from 'react-router-dom';
+import Footer from './Footer';
 
 function SplashPage() {
     const dispatch = useDispatch();
@@ -38,6 +39,7 @@ function SplashPage() {
                 </div>
         </div>
         </div>
+        <Footer />
     </>
     )
 }
