@@ -10,6 +10,7 @@ function OnePhotoPage() {
     const { id } = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
+    const user = useSelector(state => state.session.user)
     const userId = useSelector(state => state.session.user && state.session.user.id)
     // const userId = user.id
     const photo = useSelector(state => state.photos[id] && state.photos[id])
@@ -69,7 +70,7 @@ function OnePhotoPage() {
         <>
             <Link to='/photos'>All Photos</Link>
             {photo && <h2>{photo.photoName}</h2>}
-            {photo && <img src={`${photo.source}`}></img>}
+            {photo && <img src={`${photo.source}`} className='onephoto'></img>}
             {photo && userId && photo.userId === userId ?
                 <span><button onClick={handleEditPhoto}>Edit Photo</button>
                 <button onClick={handleDeletePhoto}>Delete Photo</button></span>
@@ -84,7 +85,7 @@ function OnePhotoPage() {
                     </div>
                 )
             })}
-
+            {user &&
             <form onSubmit={handleCreateComment}>
             <div className='errors'>
                 <ul>
@@ -100,6 +101,8 @@ function OnePhotoPage() {
                 />
                 <button type='submit'>Add Comment</button>
             </form>
+            }
+
         </>
     )
 }

@@ -32,7 +32,8 @@ function PhotosPage() {
         <>
         <Navigation isLoaded={isLoaded} />
         <h2>All Photos</h2>
-        <Link to='/create'>Create A New Photo</Link>
+        {user && <Link to='/create'>Create A New Photo</Link>}
+
         <div className='container'>
             {photos && photos.map(img => {
                 return <div key={img.id} className='gallery-container'>
