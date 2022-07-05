@@ -18,7 +18,7 @@ function SplashPage() {
             <div className='navbar'>
                 <div>
                     <img className='navbarbanner' src={require('./SplashPhotos/duckbanner.png')}></img>
-                    <span>Welcome to Stickr</span>
+                    <span className='welcome'>Welcome to Stickr</span>
                 </div>
                     <h2 className='topbar'><Link to='/photos'>Explore All Photos</Link></h2>
                 <div>
