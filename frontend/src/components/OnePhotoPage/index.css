@@ -31,3 +31,7 @@ button {
 .all-photos {
     margin: 20px;
 }
+
+button {
+    cursor: pointer;
+}
