@@ -21,15 +21,20 @@ Stickr is a site to find and upload photos. Users can create new photos and comm
 
 To use this repository you will: 
 1. Clone repo using ```git clone https://github.com/joquack/solo-project-again.git```
+
 2. From root folder run ```npm install``` to install all dependencies 
+
 3. Create a .env file based on the .envexample in the backend
+
 4. Setup your DATABASE and your USER with the PASSWORD for your postgreSQL with what you used in the .env
+
 5. Migrate and seed your database using: 
 ```
 npx dotenv sequelize db:create
 npx dotenv sequelize db:migrate
 npx dotenv sequelize db:seed:all
 ```
+
 6. Open up terminals for backend and frontend and run ```npm start``` in both terminals
 ___
 
