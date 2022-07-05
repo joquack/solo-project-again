@@ -52,14 +52,16 @@ function EditPhotoPage () {
                 </ul>
             </div>
             <label>
+                <div>
                 Photo Name
-                <input
+                <input className='edit-input'
                     type="text"
                     placeholder='Name'
                     value={photoName}
                     onChange={changeName}
                     required
                     />
+                </div>
             </label>
             <button type="submit">Make Change</button>
             <button onClick={handleCancel}>Cancel</button>
