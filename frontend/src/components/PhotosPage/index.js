@@ -13,6 +13,8 @@ function PhotosPage() {
     const photos = Object.values(useSelector(state => state?.photos)).reverse()
 
     const [isLoaded, setIsLoaded] = useState(false);
+    const [searhInput, setSearchInput] = useState('')
+
     useEffect(() => {
         dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
     }, [dispatch]);
@@ -33,10 +35,31 @@ function PhotosPage() {
             </div>
 
             <div>
-                <input className='searchbox' placeholder='Looking for a photo?' />
+                <input className='searchbox' placeholder='Looking for a photo?' onChange={e => setSearchInput(e.target.value)}/>
             </div>
         </div>
+
         {user && <Link to='/create'>Create A New Photo</Link>}
+
+        <div className='testsearch'>
+            {photos && photos.filter(photo => {
+                if (searhInput === ''){
+                    return photo
+                }
+                else if (photo.photoName.toLowerCase().includes(searhInput.toLowerCase())){
+                    return photo
+                }
+            }).map((img, index) => {
+                return <div key={index} className='gallery-container'>
+                <div className='gallery-item'>
+                    <Link to={`/photos/${img.id}`}><img className='image' src={`${img.source}`} alt='link-to-img-page'></img></Link>
+                </div>
+            </div>
+            })
+            }
+
+            {/* <h1>bingus</h1> */}
+        </div>
 
         <div className='container'>
             {photos && photos.map(img => {
@@ -47,6 +70,7 @@ function PhotosPage() {
                 </div>
             })}
         </div>
+
         </>
     )
 }
