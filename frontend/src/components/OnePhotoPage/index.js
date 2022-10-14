@@ -12,7 +12,6 @@ function OnePhotoPage() {
     const history = useHistory()
     const user = useSelector(state => state.session.user)
     const userId = useSelector(state => state.session.user && state.session.user.id)
-    // const userId = user.id
     const photo = useSelector(state => state.photos[id] && state.photos[id])
     const commentArr = Object.values(useSelector(state => state.comments && state.comments)).filter(comment => comment.photoId === Number(id))
     const [comment, setComment] = useState('')

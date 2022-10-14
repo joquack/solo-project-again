@@ -17,13 +17,6 @@ function PhotosPage() {
         dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
     }, [dispatch]);
 
-    // const [allPhotos, setAllPhotos] = useState([])
-    // const photos = Object.values(photosObj)
-    // useEffect(() => {
-    //     if(photosObj)
-    //         setAllPhotos(Object.values(photosObj))
-    // }, [photosObj])
-
     useEffect(() => {
         dispatch(getAllPhotos())
     }, [dispatch])
@@ -38,7 +31,7 @@ function PhotosPage() {
             {photos && photos.map(img => {
                 return <div key={img.id} className='gallery-container'>
                     <div className='gallery-item'>
-                        <Link to={`/photos/${img.id}`}><img className='image' src={`${img.source}`}></img></Link>
+                        <Link to={`/photos/${img.id}`}><img className='image' src={`${img.source}`} alt='link-to-img-page'></img></Link>
                     </div>
                 </div>
             })}

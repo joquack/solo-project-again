@@ -45,7 +45,6 @@ export const getOnePhoto = (id) => async dispatch => {
 
     if (response.ok) {
       const photo = await response.json();
-    //   console.log('THUNK HERE _____________________________________', photo)
       dispatch(load_one(photo));
       return photo
     }
@@ -98,7 +97,6 @@ const photosReducer = (state = initialState, action) => {
     let newState = {}
     switch (action.type) {
         case LOAD_PHOTOS:
-            console.log('REDUCER',action.photos)
             action.photos.forEach(photo => {
                 newState[photo.id] = photo
             })
