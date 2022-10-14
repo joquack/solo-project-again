@@ -41,7 +41,8 @@ function PhotosPage() {
 
         {user && <Link to='/create'>Create A New Photo</Link>}
 
-        <div className='testsearch'>
+        <div className='container'>
+            {/* eslint-disable-next-line*/}
             {photos && photos.filter(photo => {
                 if (searhInput === ''){
                     return photo
@@ -57,18 +58,6 @@ function PhotosPage() {
             </div>
             })
             }
-
-            {/* <h1>bingus</h1> */}
-        </div>
-
-        <div className='container'>
-            {photos && photos.map(img => {
-                return <div key={img.id} className='gallery-container'>
-                    <div className='gallery-item'>
-                        <Link to={`/photos/${img.id}`}><img className='image' src={`${img.source}`} alt='link-to-img-page'></img></Link>
-                    </div>
-                </div>
-            })}
         </div>
 
         </>

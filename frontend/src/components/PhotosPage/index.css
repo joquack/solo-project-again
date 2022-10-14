@@ -43,6 +43,7 @@ div{
     background-color: #FFFFFFCC;
     height: 33px;
     width: 180px;
+    color: black
 }
 
 .searchbox:focus{
