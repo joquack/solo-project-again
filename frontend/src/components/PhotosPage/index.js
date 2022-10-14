@@ -33,7 +33,7 @@ function PhotosPage() {
             </div>
 
             <div>
-                <input placeholder='Looking for a photo?' />
+                <input className='searchbox' placeholder='Looking for a photo?' />
             </div>
         </div>
         {user && <Link to='/create'>Create A New Photo</Link>}
