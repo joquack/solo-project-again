@@ -14,7 +14,7 @@ function OnePhotoPage() {
     const userId = useSelector(state => state.session.user && state.session.user.id)
     // const userId = user.id
     const photo = useSelector(state => state.photos[id] && state.photos[id])
-    const commentArr = Object.values(useSelector(state => state.comments && state.comments)).filter(comment => comment.photoId == id)
+    const commentArr = Object.values(useSelector(state => state.comments && state.comments)).filter(comment => comment.photoId === Number(id))
     const [comment, setComment] = useState('')
     const [errors, setErrors] = useState([]);
 
@@ -24,7 +24,7 @@ function OnePhotoPage() {
         dispatch(getAllPhotos())
         dispatch(getOnePhoto(id))
         dispatch(getAllComments())
-    }, [dispatch])
+    }, [dispatch, id])
 
     const handleEditPhoto = e => {
         e.preventDefault()
@@ -71,7 +71,7 @@ function OnePhotoPage() {
                 <Link to='/photos'>All Photos</Link>
             </div>
             {photo && <h2>{photo.photoName}</h2>}
-            {photo && <img src={`${photo.source}`} className='onephoto'></img>}
+            {photo && <img src={`${photo.source}`} className='onephoto' alt={photo.photoName}></img>}
             {photo && userId && photo.userId === userId ?
                 <span><button onClick={handleEditPhoto}>Edit Photo</button>
                 <button onClick={handleDeletePhoto}>Delete Photo</button></span>
