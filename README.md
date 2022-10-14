@@ -37,7 +37,7 @@ npx dotenv sequelize db:migrate
 npx dotenv sequelize db:seed:all
 ```
 
-6. Open up terminals for backend and frontend and run ```npm start``` in both terminals
+6. Open up terminals for the backend and frontend then run ```npm start``` in both terminals
 ___
 
 ![image](https://user-images.githubusercontent.com/79065322/177236279-fb9317ce-af59-41f7-ac9f-c739d91cdcb9.png)
