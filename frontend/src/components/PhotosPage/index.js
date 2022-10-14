@@ -23,8 +23,19 @@ function PhotosPage() {
 
     return (
         <>
-        <Navigation isLoaded={isLoaded} />
-        <h2>All Photos</h2>
+        <div className='photo-page-header'>
+            <div>
+                <Navigation isLoaded={isLoaded} />
+            </div>
+
+            <div>
+                <h2>All Photos</h2>
+            </div>
+
+            <div>
+                <input placeholder='Looking for a photo?' />
+            </div>
+        </div>
         {user && <Link to='/create'>Create A New Photo</Link>}
 
         <div className='container'>
