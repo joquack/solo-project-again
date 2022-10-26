@@ -17,6 +17,10 @@ function CreatePhotoPage() {
 
     const changeName = e => setPhotoName(e.target.value)
     const changesource = e => setSource(e.target.value)
+    const changeImg = e => {
+        const file = e.target.files[0];
+        setImg(file);
+    }
 
     useEffect(() => {
         let errArr = []
@@ -30,7 +34,7 @@ function CreatePhotoPage() {
     const handleSubmit = async e => {
         e.preventDefault()
         setErrors([])
-        const data = {userId, photoName, source}
+        const data = {userId, photoName, img}
 
         const createdPhoto = await dispatch(createPhoto(data))
         .catch(
@@ -78,18 +82,16 @@ function CreatePhotoPage() {
             </label>
             <label>
                 <div>
-                    Source
-                <input className='create-input'
-                    type="text"
-                    placeholder='Image URL'
-                    value={source}
-                    onChange={changesource}
-                    required
-                />
-                </div>
-            </label>
+                    <div className='form-input-file'>Server Img</div>
+                    <input className='create-input-file'
+                        type="file"
+                        accept='image/*'
+                        onChange={changeImg}
+                        />
+                    </div>
+                </label>
             <div className='create-buttons'>
-            <button type="submit">Upload Photo</button>
+            <button type="submit" disabled={errors.length}>Upload Photo</button>
             <button onClick={handleCancel}>Cancel</button>
             </div>
 
