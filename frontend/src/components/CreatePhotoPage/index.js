@@ -12,10 +12,20 @@ function CreatePhotoPage() {
 
     const [photoName, setPhotoName] = useState("");
     const [source, setSource] = useState("");
+    const [img, setImg] = useState(null)
     const [errors, setErrors] = useState([]);
 
     const changeName = e => setPhotoName(e.target.value)
     const changesource = e => setSource(e.target.value)
+
+    useEffect(() => {
+        let errArr = []
+
+        if(img && !((/\.(gif|jpe?g|pdf|png|)$/i).test(img.name)))
+            errArr.push('Not a valid file type')
+
+        setErrors(errArr)
+    },[img])
 
     const handleSubmit = async e => {
         e.preventDefault()
