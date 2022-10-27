@@ -26,7 +26,6 @@ router.get('/:id', async (req, res) => {
 router.post('/new', singleMulterUpload("img"), async (req, res) => {
     // const photo = await db.Photo.create(req.body)
     const {userId, photoName} = req.body
-    console.log('BACKEND HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE*********************', req.body)
     const source = await singlePublicFileUpload(req.file)
     const photo = await db.Photo.create({
         userId,
