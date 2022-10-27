@@ -4,7 +4,7 @@ const db = require("../../db/models")
 const {requireAuth} = require('../../utils/auth')
 const {check} = require('express-validator')
 const {handleValidationErrors} = require('../../utils/validation')
-const { singlePublicFileUpload } = require('../../awsS3')
+const { singlePublicFileUpload, singleMulterUpload } = require('../../awsS3')
 
 // const photoValidation = [
 //     check('photoName').exists({checkFalsey: true}).withMessage('Enter a valid photo name')
@@ -23,10 +23,10 @@ router.get('/:id', async (req, res) => {
     return res.json(photo)
 })
 
-router.post('/new', async (req, res) => {
+router.post('/new', singleMulterUpload("img"), async (req, res) => {
     // const photo = await db.Photo.create(req.body)
     const {userId, photoName} = req.body
-    console.log('BACKEND HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE*********************', userId, photoName)
+    console.log('BACKEND HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE*********************', req.body)
     const source = await singlePublicFileUpload(req.file)
     const photo = await db.Photo.create({
         userId,

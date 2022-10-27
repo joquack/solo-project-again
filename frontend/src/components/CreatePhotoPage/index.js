@@ -34,7 +34,11 @@ function CreatePhotoPage() {
     const handleSubmit = async e => {
         e.preventDefault()
         setErrors([])
-        const data = {userId, photoName, img}
+        const data = {
+            userId: userId,
+            photoName: photoName,
+            img: img
+        }
 
         const createdPhoto = await dispatch(createPhoto(data))
         .catch(
