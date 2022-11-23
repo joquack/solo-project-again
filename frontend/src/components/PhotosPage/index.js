@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { getAllPhotos } from '../../store/photos'
 import Navigation from '../Navigation';
 import * as sessionActions from "../../store/session";
@@ -29,7 +29,7 @@ function PhotosPage() {
             <div>
                 <NavLink exact to="/">Home</NavLink>
             </div>
-            
+
             <div>
                 <Navigation isLoaded={isLoaded} />
             </div>
