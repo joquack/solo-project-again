@@ -1,8 +1,11 @@
 .navigation {
     margin: 10px;
+    display: flex;
+    flex-direction: row;
 }
 .login {
     margin: auto;
+    margin-right: 10px;
 }
 
 .signup {
