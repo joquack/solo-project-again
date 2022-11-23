@@ -26,9 +26,9 @@ function PhotosPage() {
     return (
         <>
         <div className='photo-page-header'>
-            <div>
+            {/* <div>
                 <Navigation isLoaded={isLoaded} />
-            </div>
+            </div> */}
 
             <div>
                 <h2>All Photos</h2>
