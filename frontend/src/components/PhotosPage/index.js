@@ -27,6 +27,10 @@ function PhotosPage() {
         <>
         <div className='photo-page-header'>
             <div>
+                <NavLink exact to="/">Home</NavLink>
+            </div>
+            
+            <div>
                 <Navigation isLoaded={isLoaded} />
             </div>
 

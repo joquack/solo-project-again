@@ -6,11 +6,11 @@ const {check} = require('express-validator')
 const {handleValidationErrors} = require('../../utils/validation')
 const { singlePublicFileUpload, singleMulterUpload } = require('../../awsS3')
 
-// const photoValidation = [
-//     check('photoName').exists({checkFalsey: true}).withMessage('Enter a valid photo name')
-//     .isLength({min:1, max:24}).withMessage('Enter photo name that is between 1 and 24 characters long'),
-//     handleValidationErrors
-// ]
+const photoValidation = [
+    check('photoName').exists({checkFalsey: true}).withMessage('Enter a valid photo name')
+    .isLength({min:1, max:24}).withMessage('Enter photo name that is between 1 and 24 characters long'),
+    handleValidationErrors
+]
 
 router.get('/', async (req, res) => {
     const photos = await db.Photo.findAll()
@@ -23,7 +23,7 @@ router.get('/:id', async (req, res) => {
     return res.json(photo)
 })
 
-router.post('/new', singleMulterUpload("img"), async (req, res) => {
+router.post('/new', singleMulterUpload("img"), photoValidation, async (req, res) => {
     // const photo = await db.Photo.create(req.body)
     const {userId, photoName} = req.body
     const source = await singlePublicFileUpload(req.file)
@@ -35,7 +35,7 @@ router.post('/new', singleMulterUpload("img"), async (req, res) => {
     return res.json(photo)
 })
 
-router.put('/edit/:id',  async (req, res) => {
+router.put('/edit/:id', photoValidation, async (req, res) => {
     const id = parseInt(req.params.id)
 
     const photo = await db.Photo.findByPk(id)
